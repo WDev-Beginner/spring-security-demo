@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DemoControllerTest {
     @Test
     public void shouldStoreProduct(){
-        DemoController testController =  new DemoController(new ShoppingCart());
+        DemoController testController =  new DemoController(new ShoppingCart(), null);
 
         testController.addToCart("butter");
 

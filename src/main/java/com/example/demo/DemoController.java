@@ -10,9 +10,11 @@ public class DemoController {
 
 
     private final ShoppingCart sessionShoppingCart;
+    private final CurrentUser currentSessionUser;
 
-    public DemoController(ShoppingCart sessionShoppingCart) {
+    public DemoController(ShoppingCart sessionShoppingCart, CurrentUser currentSessionUser) {
         this.sessionShoppingCart = sessionShoppingCart;
+        this.currentSessionUser = currentSessionUser;
         System.out.println("Controller CREATED!");
     }
 
@@ -33,10 +35,10 @@ public class DemoController {
     }
 
 
-    @GetMapping("/login")
-    public String login(HttpServletResponse response) {
-        return "Welcome to our secret page!";
-    }
+//    @GetMapping("/login")
+//    public String login(HttpServletResponse response) {
+//        return "Welcome to our secret page!";
+//    }
 
 
     @GetMapping("/addtocart")
@@ -47,7 +49,15 @@ public class DemoController {
 
     @GetMapping("/cart")
     public List<String> cart() {
+        System.out.println("This cart belongs to :" + currentSessionUser.getUserName());
         return this.sessionShoppingCart.getCartItems();
     }
 
+    @GetMapping("/login")
+    public void login(String userName, String password){
+        if(!password.equals("password123")){
+            throw new RuntimeException();
+        }
+        currentSessionUser.setUserName(userName);
+    }
 }
