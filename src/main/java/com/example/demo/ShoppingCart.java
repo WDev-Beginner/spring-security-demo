@@ -14,6 +14,7 @@ public class ShoppingCart {
 
     public ShoppingCart(){
         this.cartItems = new ArrayList<>();
+        System.out.println("shopping cart created!");
     }
 
     public ShoppingCart(List<String> existingShoppingCart){

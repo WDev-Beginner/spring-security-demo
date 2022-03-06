@@ -1,6 +1,4 @@
 package com.example.demo;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +13,7 @@ public class DemoController {
 
     public DemoController(ShoppingCart sessionShoppingCart) {
         this.sessionShoppingCart = sessionShoppingCart;
+        System.out.println("Controller CREATED!");
     }
 
     @GetMapping("/")
@@ -43,7 +42,7 @@ public class DemoController {
     @GetMapping("/addtocart")
     public String addToCart(String product) {
         this.sessionShoppingCart.addItemToCart(product);
-        return "Thank you for you purchase! You bought:";
+        return "Thank you for you purchase! You bought:" + product;
     }
 
     @GetMapping("/cart")
